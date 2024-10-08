@@ -1,0 +1,87 @@
+{
+  "db": {
+    "user": "mongoadmin",
+    "password": "secret",
+    "databaseName": "enzo",
+    "collectionName": "coexistenceStructureJson",
+    "coexistenceCollectionName": "coexistenceConfiguration",
+
+    "postgresql": {
+      "host": "10.9.212.144",
+      "port": 5432,
+      "table": "config_default_structure_coexistence",
+      "dialect": "postgres",
+      "database": "enzo",
+      "password": "config_user_pass",
+      "username": "config_user"
+    },
+    "sqlTimeOut": 15
+
+  },
+  "apiName": "NTBETBCoexistance",
+  "api": {
+    "misysURL": {
+      "ntb-etb": {
+        "v1": {
+          "api_type": "REST",
+          "url": "http://10.200.65.226:10020/web/services/WZNAR01/",
+          "method": "POST",
+          "sourceSystem": "misys"
+        }
+      }
+     
+    },
+    "temenos": {
+
+      "ntb-etb": {
+        "v1": {
+          "api_type": "REST",
+          "method": "GET",
+          "url": "http://t24-api-test.apps.pkhbluataro.eastasia.aroapp.io/irf-extension-api/api/v1.0.0/party/fetchetbntb/etbntb",
+          "Authorization": "Basic V1NVU0VSMDE6NjU0MzIx",
+          "Cookie": "bc2bd3ad8ac0ef6cfa32d8d89b190087=24c59b4f8a13e9cabad2db7be9a558de"
+        }
+      }
+     
+    },
+    "routingService": {
+      "v1": {
+        "api_type": "REST",
+        "method": "POST",
+        "url": "http://10.200.68.169:8019/api/v1/common/routing"
+      }
+    }
+  },
+  "PORT": 8011,
+  "PORTHTTPS": 8012,
+  "rest": {
+    "requestTimeOut": 500000
+  },
+  
+  "logging": {
+    "base_path": "logs/",
+    "default_file": "server",
+    "level": "info",
+    "environment": "prod"
+  },
+  "audittrail": {
+    "topic": "ABC",
+    "partation": ""
+  },
+  "mapping": ["AccountType", "dealType", "productCode"],
+  "channels": [
+    {
+      "url": "/NtbEtb",
+      "allowedChannels": ["MB", "IB"]
+    },
+    {
+      "url": "/accountStatement",
+      "allowedChannels": ["MB", "IB"]
+    }
+  ],
+  "targetSystemSource": {
+    
+  },
+  "allowedSystemSource": ["M", "T"],
+  "coexistenceFlag": true
+}

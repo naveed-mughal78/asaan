@@ -1,0 +1,24 @@
+{
+
+	"validationFailed": {
+		"code": "400",
+		"message": "Validation Failed"
+	},
+	"unauthorized": {
+		"code": "401",
+		"message": "Unauthorized Channel, Register a channel id with admiministrator."
+	},
+	"unauthorizedheader": {
+		"code": "401",
+		"message": "Unauthorized headers values."
+	},
+	"errorStack": {
+		"code": "500",
+		"message": "Connection timeout"
+	},
+	"middleWare": {
+		"code": "MW-400",
+		"message": "Bad Request"
+	}
+
+}

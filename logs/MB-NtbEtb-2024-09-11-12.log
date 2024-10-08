@@ -1,0 +1,2 @@
+{"level":"info", "time":"9/11/2024, 12:25:26 PM","reqId":"001512212221232","fileName":"loggerMiddleware.js","TopicName":"Test-Topic","Partition":"Test-Partition","message":"Incoming Request","RequestData":{"url":"http:localhost:8011/api/v1/get/NtbEtb","reqMethod":"POST"}}
+{"level":"info", "time":"9/11/2024, 12:28:11 PM","reqId":"001512212221232","fileName":"loggerMiddleware.js","TopicName":"Test-Topic","Partition":"Test-Partition","message":"Incoming Request","RequestData":{"url":"http:localhost:8011/api/v1/get/NtbEtb","reqMethod":"POST"}}

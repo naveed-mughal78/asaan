@@ -1,0 +1,79 @@
+{"level":"info", "time":"26/06/2024, 11:01:28 am","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"26/06/2024, 11:01:28 am","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"26/06/2024, 11:05:04 am","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"26/06/2024, 11:05:04 am","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"26/06/2024, 11:05:21 am","fileName":"Server.js","message":"closing app"}
+{"level":"info", "time":"26/06/2024, 11:17:26 am","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"26/06/2024, 11:17:26 am","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"26/06/2024, 11:19:19 am","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"26/06/2024, 11:19:19 am","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"26/06/2024, 11:19:20 am","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"26/06/2024, 11:19:20 am","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"26/06/2024, 11:28:22 am","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"26/06/2024, 11:28:22 am","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"26/06/2024, 11:37:24 am","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"26/06/2024, 11:37:24 am","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"26/06/2024, 11:52:31 am","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"26/06/2024, 11:52:31 am","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"7/1/2024, 11:36:57 AM","TopicName":"Test-Topic","Partition":"Test-Partition","message":"Read mongodb data succesfully"}
+{"level":"info", "time":"7/1/2024, 11:36:57 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"7/1/2024, 11:36:57 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"7/1/2024, 11:36:57 AM","TopicName":"Test-Topic","Partition":"Test-Partition","message":"Database connected successfully"}
+{"level":"info", "time":"7/1/2024, 11:36:57 AM","TopicName":"Test-Topic","Partition":"Test-Partition","message":"Data in file matches database."}
+{"level":"info", "time":"7/1/2024, 11:55:20 AM","TopicName":"Test-Topic","Partition":"Test-Partition","message":"Read mongodb data succesfully"}
+{"level":"info", "time":"7/1/2024, 11:55:20 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"7/1/2024, 11:55:20 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"7/1/2024, 11:55:20 AM","TopicName":"Test-Topic","Partition":"Test-Partition","message":"Database connected successfully"}
+{"level":"info", "time":"7/1/2024, 11:55:20 AM","TopicName":"Test-Topic","Partition":"Test-Partition","message":"Data in file matches database."}
+{"level":"info", "time":"7/1/2024, 11:56:14 AM","TopicName":"Test-Topic","Partition":"Test-Partition","message":"Read mongodb data succesfully"}
+{"level":"info", "time":"7/1/2024, 11:56:14 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"7/1/2024, 11:56:14 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"7/1/2024, 11:56:14 AM","TopicName":"Test-Topic","Partition":"Test-Partition","message":"Database connected successfully"}
+{"level":"info", "time":"7/1/2024, 11:56:14 AM","TopicName":"Test-Topic","Partition":"Test-Partition","message":"File updated with database data."}
+{"level":"info", "time":"9/12/2024, 11:24:17 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/12/2024, 11:24:17 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"9/12/2024, 12:58:29 PM","fileName":"Server.js","message":"closing app"}
+{"level":"info", "time":"9/16/2024, 11:18:48 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/16/2024, 11:18:48 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"9/16/2024, 11:36:12 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/16/2024, 11:36:12 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"9/16/2024, 11:38:01 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/16/2024, 11:38:01 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"9/16/2024, 11:38:24 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/16/2024, 11:38:24 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"9/16/2024, 11:38:46 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/16/2024, 11:38:46 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"9/16/2024, 11:39:20 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/16/2024, 11:39:20 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"9/16/2024, 11:41:01 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/16/2024, 11:41:01 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"9/16/2024, 11:43:20 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/16/2024, 11:43:20 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"9/16/2024, 11:45:24 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/16/2024, 11:45:24 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"9/16/2024, 11:46:06 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/16/2024, 11:46:06 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"9/16/2024, 11:46:32 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/16/2024, 11:46:32 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"9/16/2024, 11:46:47 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/16/2024, 11:46:47 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"9/16/2024, 11:47:00 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/16/2024, 11:47:00 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"9/16/2024, 11:47:05 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/16/2024, 11:47:05 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"9/16/2024, 11:47:11 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/16/2024, 11:47:11 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"9/16/2024, 11:47:17 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/16/2024, 11:47:17 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"9/16/2024, 11:47:24 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/16/2024, 11:47:24 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"9/16/2024, 11:47:27 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/16/2024, 11:47:27 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"9/16/2024, 11:47:43 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/16/2024, 11:47:43 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"9/16/2024, 11:47:47 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/16/2024, 11:47:47 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"9/16/2024, 11:48:19 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/16/2024, 11:48:19 AM","fileName":"Server.js","message":"HTTPS server started on "}
+{"level":"info", "time":"9/16/2024, 11:49:04 AM","fileName":"Server.js","message":"HTTP server started on "}
+{"level":"info", "time":"9/16/2024, 11:49:04 AM","fileName":"Server.js","message":"HTTPS server started on "}
