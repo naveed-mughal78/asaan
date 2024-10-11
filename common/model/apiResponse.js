@@ -5,13 +5,16 @@ class APIResponse {
     this.responseCode = responseCode;
     this.responseDescription = responseDescription;
     this.xReqId = xReqId;
-    this.upStream = [
-      {
-        // "sourceSystem": upStream
-        sourceSystem:
-          GlobalState.state.isTransact == true ? "Transact" : "Misys",
-      },
-    ];
+    this.upStream =
+      Object.keys(data.mysis).length === 0 ? [{
+        sourceSystem: "Transact"
+      }] : Object.keys(data.transact).length === 0 ? [{
+        sourceSystem: "Mysis"
+      }] : [{
+        sourceSystem: ["Mysis", "Transact"]
+      }]
+
+
 
     if (JSON.stringify(data) !== "{}") {
       this.data = data;

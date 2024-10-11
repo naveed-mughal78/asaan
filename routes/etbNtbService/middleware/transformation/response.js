@@ -19,6 +19,39 @@ class ClientResponse {
   getPayloadResponseMysis(headers, result) {
     return new ResEtbNtbModel(result, "43", "D");
   }
+
+  mergeTransactAndMysisResponse(transactResponse, mysisResponse) {
+    if (mysisResponse?.RESPCODE === "F" && transactResponse?.error) {
+
+      if (transactResponse?.error.code === 404) {
+        return {
+          isServiceFailed: true,
+          mysis: {},
+          transact: {}
+        }
+      }
+      return {
+        mysis: {},
+        transact: {}
+      }
+    }
+    else if (mysisResponse?.RESPCODE === "F") {
+      return {
+        mysis: {},
+        transact: transactResponse,
+      }
+    } else if (transactResponse?.error) {
+      return {
+        mysis: mysisResponse,
+        transact: {},
+      }
+    } else
+
+      return {
+        mysis: mysisResponse,
+        transact: transactResponse,
+      }
+  }
 }
 
 module.exports = ClientResponse;

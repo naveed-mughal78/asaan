@@ -17,20 +17,20 @@ class ClientRequest {
   getPayloadRequestMysis(data, headers) {
     try {
       this.logger.debug(
-        "ClientRequest getPayloadRequest method invoked with parameters :",
+        "ClientRequest getPayloadRequest method invoked with parameters Mysis Call:",
         data
       );
 
       this.logger.debug(
-        "MB channel request is going to transform : ",
+        "MB channel request is going to transform Mysis Call: ",
         data.headers.xChannelId
       );
-      let method = config.get("api.misysURL.customer.v1.method");
-      let url = config.get("api.misysURL.customer.v1.url");
+      let method = config.get("api.misysURL.ntb-etb.v1.method");
+      let url = config.get("api.misysURL.ntb-etb.v1.url");
       let queryString = null;
       //Developer's Responsibility
       this.logger.debug(
-        "ClientRequest getPayloadRequest method invoked with parameters :",
+        "ClientRequest getPayloadRequest method invoked with parameters Mysis Call:",
         data
       );
       let paramObj = {
@@ -47,10 +47,10 @@ class ClientRequest {
       }
 
       return {
-        headers: { CNIC: data.body.cnic },
+        headers: { "Content-Type": "application/json", CNIC: data.body.cnic },
         method: method,
         url: method == "GET" ? `${url}?${queryString}` : url,
-        data: method == "GET" ? {} : paramObj,
+        data: {},
       };
     } catch (error) {
       throw error;
@@ -60,33 +60,30 @@ class ClientRequest {
   getPayloadRequestTransact(data, headers) {
     try {
       this.logger.debug(
-        "ClientRequest getPayloadRequest method invoked with parameters :",
+        "ClientRequest getPayloadRequest method invoked with parameters Transact Call:",
         data
       );
 
       this.logger.debug(
-        "MB channel request is going to transform : ",
+        "MB channel request is going to transform Transact Call: ",
         data.headers.xChannelId
       );
 
       let paramObj = {
-        cnic: data.body.cnic,
       };
       let modifiedHeaders = {
-        "Content-Type": "application/json",
-        "x-channel-id": "MB",
-        "x-country-code": "PK",
-        "x-req-id": "00001090",
-        "x-sub-channel-id": "MB",
-        Authorization: config.get("api.temenos.customer.v1.Authorization"),
-        Cookie: config.get("api.temenos.customer.v1.Cookie"),
+        "Accept": "application/json",
+        "type": "CNIC",
+        "cnicoraccount": data.body.cnic,
+        Authorization: config.get("api.temenos.ntb-etb.v1.Authorization"),
+        Cookie: config.get("api.temenos.ntb-etb.v1.Cookie"),
       };
 
       return {
         headers: modifiedHeaders,
         paramObj: paramObj,
-        method: config.get("api.temenos.customer.v1.method"),
-        url: config.get("api.temenos.customer.v1.url"),
+        method: config.get("api.temenos.ntb-etb.v1.method"),
+        url: config.get("api.temenos.ntb-etb.v1.url"),
       };
     } catch (error) {
       throw error;

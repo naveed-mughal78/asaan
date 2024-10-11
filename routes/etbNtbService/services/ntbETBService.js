@@ -111,48 +111,80 @@ class Service {
       const response = await clientService.perform(apiRequest);
       this.logger.debug("Service Response", response);
 
-      const resResult = response.responseCode;
+      // const resResult = response.responseCode;
 
       //! Changes made for both responses (T) - Coexistence
-      const finalresponse = response?.error
-        ? response.error
-        : resCode[resResult];
-      const { code, message } = finalresponse;
+      // const finalresponse = response?.error
+      //   ? response.error
+      //   : resCode[resResult];
+      // const { code, message } = finalresponse;
 
       // const responseCodes = resCode.etbNtb;
       // const finalresponse = responseCodes[resResult];
       // const { code, message } = finalresponse;
 
-      // Extract message and code
-      if (code == "200" || code == "00") {
-        return new APIResponse(
-          code,
-          message,
-          this.commonHeaders.xReqId,
-          undefined,
-          new APISuccess(
-            this.commonHeaders.xReqId,
-            code,
-            response?.O_MESSAGE?.O_DESC ?? response?.RESPDESC
-          ),
-          {}
-        );
-      } else {
+      if (Object.keys(response.mysis).length === 0 && Object.keys(response.transact).length === 0 && !response.hasOwnProperty("isServiceFailed")) {
         return new APIError(
-          code,
-          message,
+          "404",
+          "Customer not found in MYSIS and Temenos",
           this.commonHeaders.xReqId,
           undefined,
           "",
-          code,
-          message
+          "404",
+          "Customer not found in MYSIS and Temenos",
+        );
+      } else if (response.isServiceFailed) {
+        return new APIError(
+          errorCode.errorStack.code,
+          errorCode.errorStack.message,
+          this.commonHeaders.xReqId,
+          "Middleware",
+          "",
+          errorCode.errorStack.code,
+          errorCode.errorStack.message
+        );
+
+      } else {
+        return new APIResponse(
+          "00",
+          "",
+          this.commonHeaders.xReqId,
+          undefined,
+          response
         );
       }
+
+
+      // // Extract message and code
+      // if (code == "200" || code == "00") {
+      //   return new APIResponse(
+      //     code,
+      //     message,
+      //     this.commonHeaders.xReqId,
+      //     undefined,
+      //     new APISuccess(
+      //       this.commonHeaders.xReqId,
+      //       code,
+      //       response?.O_MESSAGE?.O_DESC ?? response?.RESPDESC
+      //     ),
+      //     {}
+      //   );
+      // } else {
+      //   return new APIError(
+      //     code,
+      //     message,
+      //     this.commonHeaders.xReqId,
+      //     undefined,
+      //     "",
+      //     code,
+      //     message
+      //   );
+      // }
     } catch (error) {
       this.logger.error({
         method: "ETBNTB.catch()",
         message:
-          "Error while executing currency rate validation perform method",
+          "Error while executing ntb-etb perform method",
         errorStack: error.stack,
       });
       return new APIError(

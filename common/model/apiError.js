@@ -15,14 +15,7 @@ class APIError {
     this.xReqId = xReqId;
     this.upStream = [
       {
-        sourceSystem:
-          upStream != null || undefined
-            ? upStream
-            : GlobalState.state.isTransact == true
-              ? "Transact"
-              : "Misys",
-
-        // "sourceSystem": upStream
+        sourceSystem: ["Middleware"],
       },
     ];
     this.data = {

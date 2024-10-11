@@ -18,18 +18,13 @@ class ResEtbNtbModel {
 
 class Res_Transact_Model {
   constructor(OutData, pathParams, customerType) {
-    this.responseCode = OutData.data.responseCode;
-    this.ATA = OutData.data.responseDescription.ATA;
-    this.CIFNO = OutData.data.responseDescription.CIFNO;
-    this.CIFSTATUS = OutData.data.responseDescription.CIFSTATUS;
-    this.CUSTMOBILE = OutData.data.responseDescription.CUSTMOBILE;
-    this.CUSTNAME = OutData.data.responseDescription.CUSTNAME;
-    this.CUSTSEGMENT = OutData.data.responseDescription.CUSTSEGMENT;
-    this.CUSTTYPE = OutData.data.responseDescription.CUSTTYPE;
-    this.ETBNTBFLAG = OutData.data.responseDescription.ETBNTBFLAG;
-    this.REMEDIATE = OutData.data.responseDescription.REMEDIATE;
-    this.RESPCODE = OutData.data.responseDescription.RESPCODE;
-    this.RESPDESC = OutData.data.responseDescription.RESPDESC;
+
+    this.customerType = OutData.body[0]?.customerType,
+      this.cifStatus = OutData.body[0]?.cifStatus,
+      this.cifNo = OutData.body[0]?.cifNo,
+      this.customerSegment = OutData.body[0]?.customerSegment,
+      this.name = OutData.body[0]?.name
+
   }
 }
 

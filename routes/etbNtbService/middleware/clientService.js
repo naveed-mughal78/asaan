@@ -34,17 +34,17 @@ class ClientService {
     });
 
     //! METHODS
-    //! CHECK THE CONFIGS AS PER TARGET SOURCE
+
 
     const getPayloadConfiguration = (RequestBodySource, payload) => {
       let url =
         RequestBodySource === "M"
-          ? config.get("api.misysURL.customer.v1.url")
-          : config.get("api.temenos.customer.v1.url");
+          ? config.get("api.misysURL.ntb-etb.v1.url")
+          : config.get("api.temenos.ntb-etb.v1.url");
       let method =
         RequestBodySource === "M"
-          ? config.get("api.misysURL.customer.v1.method")
-          : config.get("api.temenos.customer.v1.method");
+          ? config.get("api.misysURL.ntb-etb.v1.method")
+          : config.get("api.temenos.ntb-etb.v1.method");
       let headers =
         RequestBodySource === "M" ? apiRequest.headers : apiRequest.headers;
       let payloadBody = RequestBodySource === "M" ? payload : payload;
@@ -58,27 +58,7 @@ class ClientService {
     };
 
     const handleMysisRequest = async () => {
-      return {
-        responseCode: "00",
-        O_RESPONSE: {
-          O_CNIC: "4130458458069",
-          O_ETBNTBFLAG: "C",
-          O_ATA: "N",
-          O_CIFNO: "CEJQVB",
-          O_TYPE: "EA",
-          O_SEGMENT: "A6",
-          O_NAME: "MUHAMMAD ALI NAWAZ",
-          O_MOBILE: "03463835468",
-          O_STATUS: "N",
-          O_REMEDIATE: "N",
-        },
-        O_MESSAGE: {
-          O_CODE: "",
-          O_DESC: "Customer Found in MISYS - MOCK RESPONSE",
-        },
-      };
 
-      // return null; //! currently mysis payload is not confirmed from Aamir Ali. need cURL to verify
       let payload = clientRequest.getPayloadRequestMysis(
         apiRequest,
         this.commonHeaders
@@ -100,7 +80,7 @@ class ClientService {
 
       //! EXECUTE THE REQUEST
       const result = await this.client.performRestRequest(
-        this.commonHeaders,
+        payloadBody.headers,
         payloadBody.data,
         method,
         url
@@ -113,15 +93,6 @@ class ClientService {
         result: result,
       });
 
-      //! COMMENTED FOR NOW
-      // if (result?.OT.O_RESCODE !== "00000") {
-      //   return {
-      //     error: {
-      //       code: result.OT.O_RESCODE,
-      //       message: result.OT.O_RESMESSAGE,
-      //     },
-      //   };
-      // }
       if (result.error) {
         return {
           error: {
@@ -133,7 +104,7 @@ class ClientService {
       const clientResponse = new ClientResponse(this.commonHeaders);
 
       //! GET PAYLOAD RESPONSE
-      return clientResponse.getPayloadResponse(this.commonHeaders, result);
+      return clientResponse.getPayloadResponseMysis(this.commonHeaders, result);
     };
     const handleTransactRequest = async () => {
       let payload = clientRequest.getPayloadRequestTransact(
@@ -239,63 +210,33 @@ class ClientService {
     // return clientResponse.getPayloadResponse(apiRequest.headers, result);
     //! VARIABLES
     let coexistenceFlag = config.get("coexistenceFlag");
-    let RequestBodySource = apiRequest.body.sourceSystem;
 
     if (coexistenceFlag) {
       //! IF COEXISTENCE => TRUE
-      if (RequestBodySource === "T") {
-        //! TRANSACT AND MYSIS
+      //! TRANSACT AND MYSIS CALL
 
-        //! 1. MYSIS
-        // let misysResult = await handleMysisRequest();
-        //! 2. TRANSACT
-        let transactResult = await handleTransactRequest();
+      //! 1. MYSIS
+      let misysResult = await handleMysisRequest();
+      //! 2. TRANSACT
+      let transactResult = await handleTransactRequest();
 
-        //! IN TRANSACT CASE => TRUE
-        GlobalState.addGlobalState({ isTransact: true });
-        //! IF BOTH HAVE SUCCESS CASE
-        return transactResult;
 
-        //   if (misysResult?.error && transactResult?.error) {
-        //     //! IN TRANSACT CASE => TRUE
-        //     GlobalState.addGlobalState({ isTransact: true });
-        //     return transactResult;
-        //   } else if (
-        //     transactResult?.responseCode === "00000" &&
-        //     misysResult?.error
-        //   ) {
-        //     //! IN TRANSACT CASE => TRUE
-        //     GlobalState.addGlobalState({ isTransact: true });
-        //     return transactResult;
-        //   } else if (!misysResult?.error && transactResult?.error) {
-        //     //! IN MYSIS CASE => FALSE
-        //     GlobalState.addGlobalState({ isTransact: false });
-        //     return misysResult;
-        //   } else {
-        //     //! IN TRANSACT CASE => TRUE
-        //     GlobalState.addGlobalState({ isTransact: true });
-        //     //! IF BOTH HAVE SUCCESS CASE
-        //     return transactResult;
-        //   }
-        // } else {
-        //   //! IN MYSIS CASE => FALSE
-        //   GlobalState.addGlobalState({ isTransact: false });
-        //   //! MYSIS ONLY IF SOURCE IS MYSIS
-        //   return await handleMysisRequest();
-        // }
-      } else {
-        //! IN MYSIS CASE => FALSE
-        GlobalState.addGlobalState({ isTransact: false });
-        //! MYSIS ONLY IF SOURCE IS MYSIS
-        return await handleMysisRequest();
-      }
-    } else if (coexistenceFlag === false && RequestBodySource === "M") {
-      return {
-        error: {
-          code: "400",
-          message: "system not available transact is migrated",
-        },
-      };
+      console.log("misysResult", misysResult);
+      console.log("transactResult", transactResult);
+
+
+      logger({
+        method: "ClientService().perform",
+        message:
+          "Client Response Transforming Both Mysis and Transact Responses",
+        payload: { ...misysResult, ...transactResult },
+      });
+
+      //! TRANSFORMING BOTH MYSIS AND TRANSACT RESULT
+      const clientResponse = new ClientResponse(this.commonHeaders);
+      return clientResponse.mergeTransactAndMysisResponse(transactResult, misysResult);
+
+
     } else {
       //! IN TRANSACT CASE => TRUE
       GlobalState.addGlobalState({ isTransact: true });

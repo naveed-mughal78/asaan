@@ -4,6 +4,7 @@ const SoapClient = require("../connector/soap/soapclient");
 const RestClient = require("../connector/rest/restclient");
 const RestClientAxios = require("../connector/rest/restclientaxios");
 const CommonDebugLoggerInstance = require("../common/utils/logger/logger");
+const GlobalState = require("../config/global");
 
 class Client {
   constructor(
@@ -379,6 +380,19 @@ class Client {
       "EHOSTDOWN",
     ];
     if (err) {
+      if (err?.statusCode === 400 && err.error.responseCode === "TGVCP-007") {
+        return {
+          error: new ApiError(
+            err.error.responseCode,
+            err.error.responseDescription,
+            xReqId,
+            undefined,
+            "",
+            err.error.responseCode,
+            err.error.responseDescription
+          ),
+        };
+      }
       if (soapConnectionErrors.includes(err.error.code)) {
         if (err.error.syscall === "connect") {
           return {
@@ -402,36 +416,66 @@ class Client {
           };
         }
       }
-      if (err.statusCode && err.statusCode !== 400) {
-        return {
-          error: new ApiError(
-            xReqId,
-            err.statusCode,
-            err.message,
-            "TargetSystemValidationError",
-            err.stack
-          ),
-        };
-      }
-      if (err.statusCode && err.statusCode !== 200) {
-        return {
-          error: new ApiError(
-            xReqId,
-            err.statusCode,
-            err.message,
-            "TargetSystemError",
-            err.stack
-          ),
-        };
+      if (GlobalState.state.isTransact == false) {
+        if (err.statusCode && err.statusCode !== 400) {
+          return {
+            error: new ApiError(
+              err.statusCode,
+              err.message,
+              xReqId,
+              undefined,
+              "",
+              err.statusCode,
+              err.message
+            ),
+          };
+        }
+        if (err.statusCode && err.statusCode !== 200) {
+          return {
+            error: new ApiError(
+              err.statusCode,
+              err.message,
+              xReqId,
+              undefined,
+              "",
+              err.statusCode,
+              err.message
+            ),
+          };
+        }
+      } else {
+        if (err.error.header?.status == "failed") {
+          return {
+            error: new ApiError(
+              err.error.error.code != undefined
+                ? err.error.error.code
+                : err.error.error.errorDetails[0].code,
+              err.error.error.message != undefined
+                ? err.error.error.message
+                : err.error.error.errorDetails[0].message,
+              xReqId,
+              undefined,
+              "",
+              err.error.error.code != undefined
+                ? err.error.error.code
+                : err.error.error.errorDetails[0].code,
+              err.error.error.message != undefined
+                ? err.error.error.message
+                : err.error.error.errorDetails[0].message
+            ),
+          };
+        }
       }
 
       return {
         error: new ApiError(
-          xReqId,
-          "",
+          404,
           "The service is not responding currently, Kindly try again or contact with Administrator.",
-          "TargetSystemError",
-          err.stack
+          "",
+          undefined,
+          "",
+          404,
+          "The service is not responding currently, Kindly try again or contact with Administrator.",
         ),
       };
     }

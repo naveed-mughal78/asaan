@@ -1,7 +1,7 @@
 
 class APISuccess {
   constructor(resCode, resMsg, responseDescription, toSaleRate) {
-    this.responseStatus = responseDescription
+    this.data = responseDescription
   }
 }
 
