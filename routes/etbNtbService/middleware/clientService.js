@@ -242,7 +242,18 @@ class ClientService {
       GlobalState.addGlobalState({ isTransact: true });
       //! IF COEXISTENCE => FALSE
       //! ONLY TEMENOS/TRANSACT
-      return await handleTransactRequest();
+      let transactResult = await handleTransactRequest();
+      logger({
+        method: "ClientService().perform",
+        message:
+          "Client Response Transforming Transact Responses co-existence is false",
+        payload: { ...{}, ...transactResult },
+      });
+      //! TRANSFORMING TRANSACT RESULT
+      return {
+        mysis: {},
+        transact: transactResult
+      }
     }
   }
 }
