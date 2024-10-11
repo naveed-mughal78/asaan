@@ -1,2 +1,0 @@
-{"level":"info", "time":"9/10/2024, 4:25:49 PM","reqId":"00001090","fileName":"loggerMiddleware.js","TopicName":"Test-Topic","Partition":"Test-Partition","message":"Incoming Request","RequestData":{"url":"http:localhost:8011/api/v1/account/validation","reqMethod":"POST"}}
-{"level":"info", "time":"9/10/2024, 4:27:03 PM","reqId":"00001090","fileName":"loggerMiddleware.js","TopicName":"Test-Topic","Partition":"Test-Partition","message":"Incoming Request","RequestData":{"url":"http:localhost:8011/api/v1/account/validation","reqMethod":"POST"}}
