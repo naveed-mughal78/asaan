@@ -249,6 +249,12 @@ class ClientService {
           "Client Response Transforming Transact Responses co-existence is false",
         payload: { ...{}, ...transactResult },
       });
+      if (transactResult.error) {
+        return {
+          mysis: {},
+          transact: {}
+        }
+      }
       //! TRANSFORMING TRANSACT RESULT
       return {
         mysis: {},
