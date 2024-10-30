@@ -106,6 +106,11 @@ class Client {
         paramObj
       );
 
+
+      console.log("URL : ", requestUrl);
+      console.log("response : ", response);
+
+
       this.logger.debug({
         method: "client.performRestRequest()",
         message: "RestClient Recieved Response : ",

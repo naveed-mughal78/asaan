@@ -1,11 +1,11 @@
 const router = require("express").Router();
 
 
-const ntbETBController = require("./etbNtbService/controllers/ntbETBController");
+const onlyAasanAccountController = require("./OnlyAasanAccountService/controllers/onlyAasanAccountController");
 
 
 
-router.post("/NtbEtb", ntbETBController.Controller);
+router.post("/onlyAasanAccount", onlyAasanAccountController.Controller);
 
 const levelChange = require("../common/utils/logger/logger");
 router.post("/levelChange", levelChange.changed);

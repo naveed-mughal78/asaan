@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const ntbEtb = require("./index");
+const onlyAasanAccount = require("./index");
 
-router.use("/v1/get/", ntbEtb);
+router.use("/v1/get/", onlyAasanAccount);
 
 module.exports = router;

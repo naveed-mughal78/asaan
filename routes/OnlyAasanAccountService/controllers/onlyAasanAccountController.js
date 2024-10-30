@@ -1,5 +1,5 @@
 const CommonHeaders = require("../../../common/model/header");
-const Service = require("../services/ntbETBService");
+const Service = require("../services/OnlyAasanAccountService");
 const CommonDebugLoggerInstance = require("../../../common/utils/logger/logger");
 const Authenticator = require("../../../common/authentication/channelsAuth");
 
@@ -65,12 +65,12 @@ const Controller = function (req, res) {
     .catch((error) => {
       logger.error(
         { errorStack: error.stack },
-        "Error in ETB-NTB API V1 Controller while serving client request"
+        "Error in onlyAasanAccount API V1 Controller while serving client request"
       );
 
       logger.debug(
         { statusCode: 500, responseController: error.stack },
-        "In Conroller Response  ETB-NTB API V1"
+        "In Conroller Response  onlyAasanAccount API V1"
       );
 
       return res.status(400).json({ error: error.stack });

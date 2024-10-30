@@ -18,13 +18,13 @@
     "sqlTimeOut": 15
 
   },
-  "apiName": "NTBETBCoexistance",
+  "apiName": "onlyAasanAccountCoexistance",
   "api": {
     "misysURL": {
-      "ntb-etb": {
+      "onlyAasanAccountMisys": {
         "v1": {
           "api_type": "REST",
-          "url": "http://10.200.65.226:10020/web/services/WZNAR01/",
+          "url": "http://10.200.65.226:10020/web/services/WZNAW06",
           "method": "POST",
           "sourceSystem": "misys"
         }
@@ -33,13 +33,20 @@
     },
     "temenos": {
 
-      "ntb-etb": {
+      "onlyAasanAccountTransact": {
         "v1": {
           "api_type": "REST",
           "method": "GET",
-          "url": "http://t24-api-test.apps.pkhbluataro.eastasia.aroapp.io/irf-extension-api/api/v1.0.0/party/fetchetbntb/etbntb",
+          "url": "http://t24-api-test.apps.pkhbluataro.eastasia.aroapp.io/irf-extension-api/api/v1.0.0/party/accountvalidation/:id",
           "Authorization": "Basic V1NVU0VSMDE6NjU0MzIx",
-          "Cookie": "bc2bd3ad8ac0ef6cfa32d8d89b190087=24c59b4f8a13e9cabad2db7be9a558de"
+          "Cookie": "bc2bd3ad8ac0ef6cfa32d8d89b190087=72b30f1a380abfb7e7fc42799d511819"
+        }
+      },
+      "onlyAasanAccountKonnect": {
+        "v1": {
+          "api_type": "REST",
+          "method": "POST",
+          "url": "http://10.200.75.17/KONNECT_ADA/Api/GETKonnectAccountDetail"
         }
       }
      
@@ -71,7 +78,7 @@
   "mapping": ["AccountType", "dealType", "productCode"],
   "channels": [
     {
-      "url": "/NtbEtb",
+      "url": "/onlyAasanAccount",
       "allowedChannels": ["MB", "IB"]
     },
     {

@@ -2,7 +2,7 @@ const APIError = require("../../../common/model/apiError.js");
 const APIResponse = require("../../../common/model/apiResponse.js");
 const ClientService = require("../middleware/clientService.js");
 const APIRequest = require("../../../common/model/apiRequest.js");
-const ReqParamModel = require("../model/ReqEtbNtbModel.js");
+const ReqParamModel = require("../model/ReqOnlyAasanAccountModel.js");
 const CommonDebugLoggerInstance = require("../../../common/utils/logger/logger.js");
 const config = require("config");
 const APISuccess = require("../../../common/model/apiSuccess.js");
@@ -69,32 +69,6 @@ class Service {
           bodyValidationResponse.error.details[0].message
         );
       }
-      //! COEXISTENCE BYPASSED IN NTB/ETB
-
-      // const coexistenceValidation = await coexistence.Coexistence(
-      //   this.commonHeaders,
-      //   this.body
-      // );
-
-      // if (
-      //   coexistenceValidation &&
-      //   coexistenceValidation?.responseCode &&
-      //   coexistenceValidation?.responseCode != 200
-      // ) {
-      //   return new APIError(
-      //     coexistenceValidation.responseCode,
-      //     coexistenceValidation.responseDescription,
-      //     coexistenceValidation.xReqId,
-      //     "Middleware",
-      //     "",
-      //     coexistenceValidation.responseCode,
-      //     coexistenceValidation.responseDescription
-      //   );
-      // }
-
-      // GlobalState.printGlobalState();
-      // GlobalState.addGlobalState({ isTransact: coexistenceValidation });
-      // GlobalState.printGlobalState();
 
       const apiRequest = new APIRequest(
         this.commonHeaders,
@@ -104,36 +78,15 @@ class Service {
       );
 
       const clientService = new ClientService(
-        config.get("api.misysURL.ntb-etb.v1.api_type"),
+        config.get("api.misysURL.onlyAasanAccountMisys.v1.api_type"),
         this.commonHeaders
       );
 
       const response = await clientService.perform(apiRequest);
       this.logger.debug("Service Response", response);
 
-      // const resResult = response.responseCode;
 
-      //! Changes made for both responses (T) - Coexistence
-      // const finalresponse = response?.error
-      //   ? response.error
-      //   : resCode[resResult];
-      // const { code, message } = finalresponse;
-
-      // const responseCodes = resCode.etbNtb;
-      // const finalresponse = responseCodes[resResult];
-      // const { code, message } = finalresponse;
-
-      if (Object.keys(response.mysis).length === 0 && Object.keys(response.transact).length === 0 && !response.hasOwnProperty("isServiceFailed")) {
-        return new APIError(
-          "404",
-          "Customer not found in MYSIS and Temenos",
-          this.commonHeaders.xReqId,
-          undefined,
-          "",
-          "404",
-          "Customer not found in MYSIS and Temenos",
-        );
-      } else if (response.isServiceFailed) {
+      if (response.isServiceFailed) {
         return new APIError(
           errorCode.errorStack.code,
           errorCode.errorStack.message,
@@ -155,31 +108,7 @@ class Service {
       }
 
 
-      // // Extract message and code
-      // if (code == "200" || code == "00") {
-      //   return new APIResponse(
-      //     code,
-      //     message,
-      //     this.commonHeaders.xReqId,
-      //     undefined,
-      //     new APISuccess(
-      //       this.commonHeaders.xReqId,
-      //       code,
-      //       response?.O_MESSAGE?.O_DESC ?? response?.RESPDESC
-      //     ),
-      //     {}
-      //   );
-      // } else {
-      //   return new APIError(
-      //     code,
-      //     message,
-      //     this.commonHeaders.xReqId,
-      //     undefined,
-      //     "",
-      //     code,
-      //     message
-      //   );
-      // }
+
     } catch (error) {
       this.logger.error({
         method: "ETBNTB.catch()",

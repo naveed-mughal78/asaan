@@ -25,8 +25,8 @@ class ClientRequest {
         "MB channel request is going to transform Mysis Call: ",
         data.headers.xChannelId
       );
-      let method = config.get("api.misysURL.ntb-etb.v1.method");
-      let url = config.get("api.misysURL.ntb-etb.v1.url");
+      let method = config.get("api.misysURL.onlyAasanAccountMisys.v1.method");
+      let url = config.get("api.misysURL.onlyAasanAccountMisys.v1.url");
       let queryString = null;
       //Developer's Responsibility
       this.logger.debug(
@@ -34,7 +34,10 @@ class ClientRequest {
         data
       );
       let paramObj = {
-        INPUTPARM: {},
+        "INPUTPARM": {
+          "CNIC": data.body.cnic,
+          "SEARCH_TYPE": data.body.SEARCH_TYPE
+        },
       };
 
       if (method == "GET") {
@@ -47,10 +50,10 @@ class ClientRequest {
       }
 
       return {
-        headers: { "Content-Type": "application/json", CNIC: data.body.cnic },
+        headers: { "Content-Type": "application/json", },
         method: method,
         url: method == "GET" ? `${url}?${queryString}` : url,
-        data: {},
+        data: paramObj,
       };
     } catch (error) {
       throw error;
@@ -72,18 +75,49 @@ class ClientRequest {
       let paramObj = {
       };
       let modifiedHeaders = {
+        companyId: "PK0029999",
         "Accept": "application/json",
-        "type": "CNIC",
-        "cnicoraccount": data.body.cnic,
-        Authorization: config.get("api.temenos.ntb-etb.v1.Authorization"),
-        Cookie: config.get("api.temenos.ntb-etb.v1.Cookie"),
+        "product": "HBL.ASAAN",
+        "cnic": data.body.cnic,
+        Authorization: config.get("api.temenos.onlyAasanAccountTransact.v1.Authorization"),
+        Cookie: config.get("api.temenos.onlyAasanAccountTransact.v1.Cookie"),
       };
 
       return {
         headers: modifiedHeaders,
         paramObj: paramObj,
-        method: config.get("api.temenos.ntb-etb.v1.method"),
-        url: config.get("api.temenos.ntb-etb.v1.url"),
+        method: config.get("api.temenos.onlyAasanAccountTransact.v1.method"),
+        url: config.get("api.temenos.onlyAasanAccountTransact.v1.url"),
+      };
+    } catch (error) {
+      throw error;
+    }
+  }
+  getPayloadRequestKonnect(data, headers) {
+    try {
+      this.logger.debug(
+        "ClientRequest getPayloadRequest method invoked with parameters Konnect Call:",
+        data
+      );
+
+      this.logger.debug(
+        "MB channel request is going to transform Konnect Call: ",
+        data.headers.xChannelId
+      );
+
+      let paramObj = {
+        "cnic": data.body.cnic,
+
+      };
+      let modifiedHeaders = {
+        "Accept": "application/json",
+      };
+
+      return {
+        headers: modifiedHeaders,
+        paramObj: paramObj,
+        method: config.get("api.temenos.onlyAasanAccountKonnect.v1.method"),
+        url: config.get("api.temenos.onlyAasanAccountKonnect.v1.url"),
       };
     } catch (error) {
       throw error;

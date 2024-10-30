@@ -8,14 +8,17 @@ const serverlogger = require("./common/utils/logger/logger")
   .child({ fileName: "Server.js" });
 const loggerMiddleware = require("./loggerMiddleware");
 const fs = require("fs");
-const dbConnect = require("./config/db/mongoDb.js");
+const checkAndUpdateData = require("./config/db/dataFetch");
+
+//When connect with database to uncommit this function
+
+
+// checkAndUpdateData();
 
 const SERVICE_PORT = config.PORT;
 const SERVICE_PORTHTTPS = config.PORTHTTPS;
 
-//When connect with database to uncommit this function
 
-//dbConnect();
 app.use(loggerMiddleware);
 app.use(express.json());
 

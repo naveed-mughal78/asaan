@@ -4,13 +4,11 @@ const Joi = require("../../../common/utils/validator/joiValidator").Joi;
 class ReqNtbEtbModal {
   constructor(OutData) {
     this.cnic = OutData.cnic;
+    this.SEARCH_TYPE = OutData.SEARCH_TYPE
   }
 
   validateSchema() {
-    // let sourceEnum = Object.freeze({
-    //   M: "M",
-    //   T: "T",
-    // });
+
     const schema = Joi.object().keys({
       cnic: Joi.string()
         .length(13)
@@ -18,10 +16,7 @@ class ReqNtbEtbModal {
         .messages({ "string.pattern.base": `CNIC must be 13 digits number.` })
         .required(),
 
-      // sourceSystem: Joi.string()
-      //   .valid(...Object.values(sourceEnum))
-      //   .required()
-      //   .messages({ "any.only": `Source is not valid` }),
+      SEARCH_TYPE: Joi.string().required(),
     });
 
     return schema.validate(this);
