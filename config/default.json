@@ -37,7 +37,7 @@
         "v1": {
           "api_type": "REST",
           "method": "GET",
-          "url": "http://t24-api-test.apps.pkhbluataro.eastasia.aroapp.io/irf-extension-api/api/v1.0.0/party/accountvalidation/:id",
+          "url": "http://t24-api-test.apps.pkhbluataro.eastasia.aroapp.io/irf-extension-api/api/v1.0.0/party/accountvalidation11/:id",
           "Authorization": "Basic V1NVU0VSMDE6NjU0MzIx",
           "Cookie": "bc2bd3ad8ac0ef6cfa32d8d89b190087=72b30f1a380abfb7e7fc42799d511819"
         }

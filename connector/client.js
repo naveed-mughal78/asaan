@@ -106,9 +106,9 @@ class Client {
         paramObj
       );
 
+      console.log("resp-------", response)
 
-      console.log("URL : ", requestUrl);
-      console.log("response : ", response);
+
 
 
       this.logger.debug({

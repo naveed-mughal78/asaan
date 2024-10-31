@@ -130,7 +130,7 @@ class ClientService {
         payload.method,
         payload.url
       );
-
+      console.log("TransactRequestResult ---- ", result);
       //! LOG THE PAYLOAD
       logger({
         method: "ClientService().perform",
@@ -140,7 +140,16 @@ class ClientService {
       });
       // Check is list coming or not 
       let isListExist = result?.body?.length ? result?.body[0]?.isExist : null;
-      if (isListExist || result?.error?.responseCode === "E-124540") {
+
+      if (result.error.responseCode === 404) { //! Check if server is down 
+        return {
+          error: {
+            code: result.error.responseCode,
+            message: result?.error?.responseDescription,
+          },
+        };
+      }
+      else if (isListExist || result?.error?.responseCode === "E-124540") {
 
         return {
           error: {
@@ -180,6 +189,9 @@ class ClientService {
         payload.method,
         payload.url
       );
+      console.log("PayloadOfKonnectRequest:------ ", payload);
+
+      console.log("ResultOfKonnectRequest:------ ", result);
 
       //! LOG THE PAYLOAD
       logger({
@@ -188,7 +200,6 @@ class ClientService {
           "Client Recieved Response from Konnect onlyAasanAccount V1",
         result: result,
       });
-
       if (result.ADA_Account_Exisits === "F") {
         return {
           error: {
@@ -200,7 +211,7 @@ class ClientService {
       const clientResponse = new ClientResponse(this.commonHeaders);
 
       //! GET PAYLOAD RESPONSE
-      return clientResponse.getPayloadResponseTransact(
+      return clientResponse.getPayloadResponseKonnect(
         this.commonHeaders,
         result
       );
