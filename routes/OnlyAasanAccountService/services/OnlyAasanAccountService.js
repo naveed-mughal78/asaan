@@ -85,8 +85,18 @@ class Service {
       const response = await clientService.perform(apiRequest);
       this.logger.debug("Service Response", response);
 
-
-      if (response.isServiceFailed) {
+      if (response?.error) {
+        return new APIError(
+          response.error.code,
+          response.error.message,
+          this.commonHeaders.xReqId,
+          response.error.source,
+          "",
+          response.error.code,
+          response.error.message
+        );
+      }
+      else if (response?.isServiceFailed) {
         return new APIError(
           errorCode.errorStack.code,
           errorCode.errorStack.message,
@@ -106,14 +116,11 @@ class Service {
           response
         );
       }
-
-
-
     } catch (error) {
       this.logger.error({
         method: "ETBNTB.catch()",
         message:
-          "Error while executing ntb-etb perform method",
+          "Error while executing Only Aasan Account perform method",
         errorStack: error.stack,
       });
       return new APIError(

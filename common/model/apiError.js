@@ -15,7 +15,7 @@ class APIError {
     this.xReqId = xReqId;
     this.upStream = [
       {
-        sourceSystem: ["Middleware"],
+        sourceSystem: [upStream],
       },
     ];
     this.data = {

@@ -36,33 +36,7 @@ class ClientService {
     //! METHODS
 
 
-    const getPayloadConfiguration = (RequestBodySource, payload) => {
 
-      let configuiredObject = {
-        M: {
-          url: config.get("api.misysURL.onlyAasanAccountMisys.v1.url"),
-          method: config.get("api.misysURL.onlyAasanAccountMisys.v1.method"),
-          headers: apiRequest.headers,
-          payloadBody: payload,
-        },
-        T: {
-          url: config.get("api.temenos.onlyAasanAccountTransact.v1.url"),
-          method: config.get("api.temenos.onlyAasanAccountTransact.v1.method"),
-          headers: apiRequest.headers,
-          payloadBody: payload,
-
-        },
-        K: {
-          url: config.get("api.temenos.onlyAasanAccountKonnect.v1.url"),
-          method: config.get("api.temenos.onlyAasanAccountKonnect.v1.method"),
-          headers: apiRequest.headers,
-          payloadBody: payload,
-        }
-      }
-
-
-      return configuiredObject[RequestBodySource];
-    };
 
     const handleMysisRequest = async () => {
 
@@ -93,7 +67,14 @@ class ClientService {
         message: "Client Recieved Response from MISYS onlyAasanAccount V1",
         result: result,
       });
-
+      if (result?.error || result?.error?.responseCode === 404) { //! Check if server is down 
+        return {
+          error: {
+            code: result.error.responseCode,
+            message: result?.error?.responseDescription,
+          },
+        };
+      }
       if (result.OUTPUTPARM.REPCODE === "R") {
         // Not have account
         // Proceed further
@@ -130,7 +111,6 @@ class ClientService {
         payload.method,
         payload.url
       );
-      console.log("TransactRequestResult ---- ", result);
       //! LOG THE PAYLOAD
       logger({
         method: "ClientService().perform",
@@ -138,10 +118,9 @@ class ClientService {
           "Client Recieved Response from Transact onlyAasanAccount V1",
         result: result,
       });
-      // Check is list coming or not 
-      let isListExist = result?.body?.length ? result?.body[0]?.isExist : null;
 
-      if (result.error.responseCode === 404) { //! Check if server is down 
+
+      if (result?.error?.responseCode === 404) { //! Check if server is down or path not found!
         return {
           error: {
             code: result.error.responseCode,
@@ -149,7 +128,7 @@ class ClientService {
           },
         };
       }
-      else if (isListExist || result?.error?.responseCode === "E-124540") {
+      else if (result?.error || result?.body[0]?.isExist === "N") {
 
         return {
           error: {
@@ -189,9 +168,6 @@ class ClientService {
         payload.method,
         payload.url
       );
-      console.log("PayloadOfKonnectRequest:------ ", payload);
-
-      console.log("ResultOfKonnectRequest:------ ", result);
 
       //! LOG THE PAYLOAD
       logger({
@@ -200,6 +176,15 @@ class ClientService {
           "Client Recieved Response from Konnect onlyAasanAccount V1",
         result: result,
       });
+
+      if (result?.error || result?.error?.responseCode === 404) { //! Check if server is down 
+        return {
+          error: {
+            code: result.error.responseCode,
+            message: result?.error?.responseDescription,
+          },
+        };
+      }
       if (result.ADA_Account_Exisits === "F") {
         return {
           error: {
@@ -258,16 +243,17 @@ class ClientService {
         payload: { ...misysResult, ...transactResult, ...konnectResult },
       });
 
-      //! TRANSFORMING BOTH MYSIS AND TRANSACT RESULT
       const clientResponse = new ClientResponse(this.commonHeaders);
-      if (misysResult?.error && transactResult?.error && konnectResult?.error) {
+      if (misysResult?.error?.code === 404 || transactResult?.error?.code === 404 || konnectResult?.error?.code === 404) {
+        //! IF ANY SERVER IS DOWN/ERROR
+        return clientResponse.serverDownORNotFound({ misys: misysResult, transact: transactResult, konnect: konnectResult });
+      }
+      //! TRANSFORMING BOTH MYSIS AND TRANSACT RESULT
+      else if (misysResult?.error && transactResult?.error && konnectResult?.error) {
         return clientResponse.notExistPayload({ misys: misysResult, transact: transactResult, konnect: konnectResult });
       } else {
         return clientResponse.alreadyExistPayload({ misys: misysResult, transact: transactResult, konnect: konnectResult });
-
       }
-
-
     }
   }
 }
