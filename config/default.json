@@ -79,7 +79,7 @@
   "channels": [
     {
       "url": "/onlyAasanAccount",
-      "allowedChannels": ["MB", "IB"]
+      "allowedChannels": ["SPARK", "MISYS", "KONNECT"]
     },
     {
       "url": "/accountStatement",
