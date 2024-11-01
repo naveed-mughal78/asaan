@@ -254,6 +254,42 @@ class ClientService {
       } else {
         return clientResponse.alreadyExistPayload({ misys: misysResult, transact: transactResult, konnect: konnectResult });
       }
+    } else {
+      //! MISYS AND KONNECT CALL
+
+      //! 1. MYSIS
+      let misysResult = await handleMysisRequest();
+
+      let konnectResult;
+
+      if (misysResult.error) {// IF NOT EXIST THEN IT WILL BE CONSIDERED ERROR 
+
+        //! 2. KONNECT
+        konnectResult = await handleKonnectRequest();
+      }
+
+
+
+      logger({
+        method: "ClientService().perform",
+        message:
+          "Client Response Transforming Both Mysis and Transact Responses",
+        payload: { ...misysResult, ...konnectResult },
+      });
+
+      const clientResponse = new ClientResponse(this.commonHeaders);
+      if (misysResult?.error?.code === 404 || konnectResult?.error?.code === 404) {
+        //! IF ANY SERVER IS DOWN/ERROR
+        return clientResponse.serverDownORNotFound({ misys: misysResult, transact: null, konnect: konnectResult });
+      }
+      //! TRANSFORMING BOTH MYSIS AND TRANSACT RESULT
+      else if (misysResult?.error && konnectResult?.error) {
+        return clientResponse.notExistPayload({ misys: misysResult, transact: null, konnect: konnectResult }, false);//! False=>Transact will not work
+      } else {
+        return clientResponse.alreadyExistPayload({ misys: misysResult, transact: null, konnect: konnectResult }, false); //! False=>Transact will not work
+      }
+
+
     }
   }
 }
