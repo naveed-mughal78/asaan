@@ -90,5 +90,5 @@
     
   },
   "allowedSystemSource": ["M", "T"],
-  "coexistenceFlag": false
+  "coexistenceFlag": true
 }
