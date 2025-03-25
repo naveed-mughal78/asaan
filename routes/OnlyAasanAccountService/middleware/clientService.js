@@ -4,6 +4,7 @@ const ClientRequest = require("./transformation/request");
 const ClientResponse = require("./transformation/response");
 const CommonDebugLoggerInstance = require("../../../common/utils/logger/logger");
 const GlobalState = require("../../../config/global");
+const { isCharacterAvailable } = require("../../../common/utils/utility");
 
 class ClientService {
   constructor(client_name, commonHeaders) {
@@ -185,7 +186,7 @@ class ClientService {
           },
         };
       }
-      if (result.ADA_Account_Exisits === "F") {
+      if (result.ADA_Account_Exisits === "F" || !result.ADA_Account_Exisits) {
         return {
           error: {
             code: result.ADA_Account_Exisits,
@@ -255,6 +256,8 @@ class ClientService {
         return clientResponse.alreadyExistPayload({ misys: misysResult, transact: transactResult, konnect: konnectResult });
       }
     } else {
+
+
       //! MISYS AND KONNECT CALL
 
       //! 1. MYSIS
@@ -262,8 +265,8 @@ class ClientService {
 
       let konnectResult;
 
-      if (misysResult.error) {// IF NOT EXIST THEN IT WILL BE CONSIDERED ERROR 
-
+      if (!isCharacterAvailable(apiRequest.body.cnic) && (misysResult.error && misysResult.error.code !== 404)) {
+        //! IF NOT EXIST THEN IT WILL BE CONSIDERED ERROR 
         //! 2. KONNECT
         konnectResult = await handleKonnectRequest();
       }
@@ -283,7 +286,7 @@ class ClientService {
         return clientResponse.serverDownORNotFound({ misys: misysResult, transact: null, konnect: konnectResult });
       }
       //! TRANSFORMING BOTH MYSIS AND TRANSACT RESULT
-      else if (misysResult?.error && konnectResult?.error) {
+      else if (misysResult?.error && (konnectResult?.error || !konnectResult)) {
         return clientResponse.notExistPayload({ misys: misysResult, transact: null, konnect: konnectResult }, false);//! False=>Transact will not work
       } else {
         return clientResponse.alreadyExistPayload({ misys: misysResult, transact: null, konnect: konnectResult }, false); //! False=>Transact will not work

@@ -11,9 +11,9 @@ class ReqNtbEtbModal {
 
     const schema = Joi.object().keys({
       cnic: Joi.string()
-        .length(13)
-        .pattern(/^[0-9]+$/)
-        .messages({ "string.pattern.base": `CNIC must be 13 digits number.` })
+        .max(20)
+        // .pattern(/^[0-9]+$/)
+        .messages({ "string.pattern.base": `CNIC must be 20 digits number.` })
         .required(),
 
       SEARCH_TYPE: Joi.string().required(),

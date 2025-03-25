@@ -46,7 +46,7 @@
         "v1": {
           "api_type": "REST",
           "method": "POST",
-          "url": "http://10.200.75.19:80/ADA_REST_SERVICE/Api/GETKonnectAccountDetail"
+          "url": "http://10.200.75.17/KONNECT_ADA/Api/GETKonnectAccountDetail"
         }
       }
      

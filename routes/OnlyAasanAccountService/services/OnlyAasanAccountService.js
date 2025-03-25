@@ -24,6 +24,236 @@ class Service {
 
   async perform() {
     try {
+      // const headerValidationResponse = this.commonHeaders.validateSchema();
+
+      // this.logger.debug({
+      //   method: "Service Perform",
+      //   message: "Request Headers Validation Result",
+      //   headerValidationResult: { error: headerValidationResponse.error },
+      // });
+
+      // if (headerValidationResponse.error) {
+      //   this.logger.debug({
+      //     method: "Service Perform",
+      //     message: "Request Headers Validation Result",
+      //     headerValidationResult: { error: headerValidationResponse.error },
+      //   });
+
+      //   return new APIError(
+      //     errorCode.unauthorizedheader.code,
+      //     headerValidationResponse.error.details[0].message,
+      //     headerValidationResponse.value.xReqId,
+      //     "Middleware",
+      //     "",
+      //     errorCode.unauthorizedheader.code,
+      //     headerValidationResponse.error.details[0].message
+      //   );
+      // }
+
+      // const bodyValidationResponse = this.ReqParamModel.validateSchema();
+
+      // if (bodyValidationResponse.error) {
+      //   this.logger.debug({
+      //     method: "Service Perform",
+      //     message: "Request Headers Validation Result",
+      //     bodyValidationResult: { error: bodyValidationResponse.error },
+      //   });
+
+      //   return new APIError(
+      //     errorCode.validationFailed.code,
+      //     bodyValidationResponse.error.details[0].message,
+      //     this.commonHeaders.xReqId,
+      //     "Middleware",
+      //     bodyValidationResponse.error.details[0].context.key,
+      //     errorCode.validationFailed.code,
+      //     bodyValidationResponse.error.details[0].message
+      //   );
+      // }
+
+      // const headerValidationResponse = this.commonHeaders.validateSchema();
+
+      // this.logger.debug({
+      //   method: "Service Perform",
+      //   message: "Request Headers Validation Result",
+      //   headerValidationResult: { error: headerValidationResponse.error },
+      // });
+
+      // if (headerValidationResponse.error) {
+      //   this.logger.debug({
+      //     method: "Service Perform",
+      //     message: "Request Headers Validation Result",
+      //     headerValidationResult: { error: headerValidationResponse.error },
+      //   });
+
+      //   return new APIError(
+      //     errorCode.unauthorizedheader.code,
+      //     headerValidationResponse.error.details[0].message,
+      //     headerValidationResponse.value.xReqId,
+      //     "Middleware",
+      //     "",
+      //     errorCode.unauthorizedheader.code,
+      //     headerValidationResponse.error.details[0].message
+      //   );
+      // }
+
+      // const bodyValidationResponse = this.ReqParamModel.validateSchema();
+
+      // if (bodyValidationResponse.error) {
+      //   this.logger.debug({
+      //     method: "Service Perform",
+      //     message: "Request Headers Validation Result",
+      //     bodyValidationResult: { error: bodyValidationResponse.error },
+      //   });
+
+      //   return new APIError(
+      //     errorCode.validationFailed.code,
+      //     bodyValidationResponse.error.details[0].message,
+      //     this.commonHeaders.xReqId,
+      //     "Middleware",
+      //     bodyValidationResponse.error.details[0].context.key,
+      //     errorCode.validationFailed.code,
+      //     bodyValidationResponse.error.details[0].message
+      //   );
+      // }
+      // const headerValidationResponse = this.commonHeaders.validateSchema();
+
+      // this.logger.debug({
+      //   method: "Service Perform",
+      //   message: "Request Headers Validation Result",
+      //   headerValidationResult: { error: headerValidationResponse.error },
+      // });
+
+      // if (headerValidationResponse.error) {
+      //   this.logger.debug({
+      //     method: "Service Perform",
+      //     message: "Request Headers Validation Result",
+      //     headerValidationResult: { error: headerValidationResponse.error },
+      //   });
+
+      //   return new APIError(
+      //     errorCode.unauthorizedheader.code,
+      //     headerValidationResponse.error.details[0].message,
+      //     headerValidationResponse.value.xReqId,
+      //     "Middleware",
+      //     "",
+      //     errorCode.unauthorizedheader.code,
+      //     headerValidationResponse.error.details[0].message
+      //   );
+      // }
+
+      // const bodyValidationResponse = this.ReqParamModel.validateSchema();
+
+      // if (bodyValidationResponse.error) {
+      //   this.logger.debug({
+      //     method: "Service Perform",
+      //     message: "Request Headers Validation Result",
+      //     bodyValidationResult: { error: bodyValidationResponse.error },
+      //   });
+
+      //   return new APIError(
+      //     errorCode.validationFailed.code,
+      //     bodyValidationResponse.error.details[0].message,
+      //     this.commonHeaders.xReqId,
+      //     "Middleware",
+      //     bodyValidationResponse.error.details[0].context.key,
+      //     errorCode.validationFailed.code,
+      //     bodyValidationResponse.error.details[0].message
+      //   );
+      // }
+
+      // const headerValidationResponse = this.commonHeaders.validateSchema();
+
+      // this.logger.debug({
+      //   method: "Service Perform",
+      //   message: "Request Headers Validation Result",
+      //   headerValidationResult: { error: headerValidationResponse.error },
+      // });
+
+      // if (headerValidationResponse.error) {
+      //   this.logger.debug({
+      //     method: "Service Perform",
+      //     message: "Request Headers Validation Result",
+      //     headerValidationResult: { error: headerValidationResponse.error },
+      //   });
+
+      //   return new APIError(
+      //     errorCode.unauthorizedheader.code,
+      //     headerValidationResponse.error.details[0].message,
+      //     headerValidationResponse.value.xReqId,
+      //     "Middleware",
+      //     "",
+      //     errorCode.unauthorizedheader.code,
+      //     headerValidationResponse.error.details[0].message
+      //   );
+      // }
+
+      // const bodyValidationResponse = this.ReqParamModel.validateSchema();
+
+      // if (bodyValidationResponse.error) {
+      //   this.logger.debug({
+      //     method: "Service Perform",
+      //     message: "Request Headers Validation Result",
+      //     bodyValidationResult: { error: bodyValidationResponse.error },
+      //   });
+
+      //   return new APIError(
+      //     errorCode.validationFailed.code,
+      //     bodyValidationResponse.error.details[0].message,
+      //     this.commonHeaders.xReqId,
+      //     "Middleware",
+      //     bodyValidationResponse.error.details[0].context.key,
+      //     errorCode.validationFailed.code,
+      //     bodyValidationResponse.error.details[0].message
+      //   );
+      // }
+
+
+      // const headerValidationResponse = this.commonHeaders.validateSchema();
+
+      // this.logger.debug({
+      //   method: "Service Perform",
+      //   message: "Request Headers Validation Result",
+      //   headerValidationResult: { error: headerValidationResponse.error },
+      // });
+
+      // if (headerValidationResponse.error) {
+      //   this.logger.debug({
+      //     method: "Service Perform",
+      //     message: "Request Headers Validation Result",
+      //     headerValidationResult: { error: headerValidationResponse.error },
+      //   });
+
+      //   return new APIError(
+      //     errorCode.unauthorizedheader.code,
+      //     headerValidationResponse.error.details[0].message,
+      //     headerValidationResponse.value.xReqId,
+      //     "Middleware",
+      //     "",
+      //     errorCode.unauthorizedheader.code,
+      //     headerValidationResponse.error.details[0].message
+      //   );
+      // }
+
+      // const bodyValidationResponse = this.ReqParamModel.validateSchema();
+
+      // if (bodyValidationResponse.error) {
+      //   this.logger.debug({
+      //     method: "Service Perform",
+      //     message: "Request Headers Validation Result",
+      //     bodyValidationResult: { error: bodyValidationResponse.error },
+      //   });
+
+      //   return new APIError(
+      //     errorCode.validationFailed.code,
+      //     bodyValidationResponse.error.details[0].message,
+      //     this.commonHeaders.xReqId,
+      //     "Middleware",
+      //     bodyValidationResponse.error.details[0].context.key,
+      //     errorCode.validationFailed.code,
+      //     bodyValidationResponse.error.details[0].message
+      //   );
+      // }
+
       const headerValidationResponse = this.commonHeaders.validateSchema();
 
       this.logger.debug({

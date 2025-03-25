@@ -26,31 +26,31 @@ const CommonHeaders = require('../model/header')
 
 
 // CYYMMDD inputDate --> 1010101 to convert into 20010101
-const  convertDateFormat = (inputDate) => { 
+const convertDateFormat = (inputDate) => {
   const century = inputDate[0];
-  const year = inputDate.substring(1, 3); 
-  const month = inputDate.substring(3, 5); 
-  const day = inputDate.substring(5); 
+  const year = inputDate.substring(1, 3);
+  const month = inputDate.substring(3, 5);
+  const day = inputDate.substring(5);
   const fullYear = century === '1' ? '20' + year : '19' + year;
   const formattedDate = fullYear + month + day;
 
   return formattedDate; //20010101
 }
 
- //DD-MM-YY  040626
-const parseDate = (dateString)  => {
+//DD-MM-YY  040626
+const parseDate = (dateString) => {
 
-  const day = dateString.substring(0, 2); 
-  const month = dateString.substring(2, 4); 
-  let year = dateString.substring(4); 
+  const day = dateString.substring(0, 2);
+  const month = dateString.substring(2, 4);
+  let year = dateString.substring(4);
 
- 
+
   if (year.length === 2) {
-      const currentYear = new Date().getFullYear().toString().substring(0, 2); 
-      year = currentYear + year; 
+    const currentYear = new Date().getFullYear().toString().substring(0, 2);
+    year = currentYear + year;
   }
   const formattedDate = `${day}-${month}-${year}`; // 04-06-2026
-  return formattedDate; 
+  return formattedDate;
 }
 
 //amountConversion (divided by 100)
@@ -67,13 +67,16 @@ function amountConvMultiply(numberString) {
   const result = parseFloat(numberString) * 100;
   return result;
 }
-
+function isCharacterAvailable(cnicNumber) {
+  return /[A-Za-z]/.test(cnicNumber) && /\d/.test(cnicNumber) || /[^A-Za-z0-9]/.test(cnicNumber)
+}
 module.exports = {
 
   convertDateFormat,
   amountConvDivide,
   parseDate,
-  amountConvMultiply
+  amountConvMultiply,
+  isCharacterAvailable
 }
 
 

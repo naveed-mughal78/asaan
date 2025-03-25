@@ -22,8 +22,10 @@
     "mongodb": "^4.17.2",
     "mongoose": "^8.0.4",
     "newversion": "file:",
+    "pg": "^8.13.1",
     "pino": "^8.17.2",
     "request-promise": "^4.2.6",
+    "sequelize": "^6.37.5",
     "soap": "^1.0.0"
   },
   "devDependencies": {

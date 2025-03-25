@@ -39,7 +39,7 @@ class ClientResponse {
       return {
         error: {
           code: result?.misys.error?.code === 404 ? result?.misys.error?.code : result?.konnect.error?.code,
-          message: result?.misys.error?.message === 404 ? result?.misys.error?.message : result?.konnect.error?.message,
+          message: result?.misys.error?.message ? result?.misys.error?.message : result?.konnect?.error?.message,
 
           source: result?.misys.error?.code === 404 ? "Mysis" : "Konnect",
         },
@@ -49,15 +49,12 @@ class ClientResponse {
       return {
         error: {
           code: result?.misys.error?.code === 404 ? result?.misys.error?.code : result?.transact.error?.code === 404 ? result?.transact.error?.code : result?.konnect.error?.code,
-          message: result?.misys.error?.message === 404 ? result?.misys.error?.message : result?.transact.error?.message === 404 ? result?.transact.error?.message : result?.konnect.error?.message,
-
+          message: result?.misys.error?.message ? result?.misys.error?.message : result?.transact.error?.message ? result?.transact.error?.message : result?.konnect.error?.message,
           source: result?.misys.error?.code === 404 ? "Mysis" : result?.transact.error?.code === 404 ? "Transact" : "Konnect",
         },
       };
     }
-
   }
-
 }
 
 module.exports = ClientResponse;
