@@ -17,9 +17,10 @@ COPY package\*.json ./
 # Copy the rest of the application code
 
 COPY . .
-
+ENV NODE_ENV=production
 # Install dependencies
-
+RUN npm config set proxy http://10.9.46.206:8080
+RUN npm config set https-proxy http://10.9.46.206:8080
 RUN npm install
 
 # Expose the port your Node.js application will run on

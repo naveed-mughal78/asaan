@@ -116,8 +116,10 @@ class ClientRequest {
       return {
         headers: modifiedHeaders,
         paramObj: paramObj,
-        method: config.get("api.temenos.onlyAasanAccountKonnect.v1.method"),
-        url: config.get("api.temenos.onlyAasanAccountKonnect.v1.url"),
+        method: config.get("api.misysURL.onlyAasanAccountKonnect.v1.method"),
+        url: config.get("api.misysURL.onlyAasanAccountKonnect.v1.url"),
+        Authorization: config.get("api.misysURL.onlyAasanAccountKonnect.v1.Authorization"),
+        
       };
     } catch (error) {
       throw error;

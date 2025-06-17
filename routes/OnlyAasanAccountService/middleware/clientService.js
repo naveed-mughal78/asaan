@@ -152,6 +152,7 @@ class ClientService {
         apiRequest,
         this.commonHeaders
       );
+      console.log("konnectPAYLOAD", payload);
 
       //! LOG THE PAYLOAD
       logger({
