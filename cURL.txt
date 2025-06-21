@@ -1,0 +1,10 @@
+curl --location 'http://localhost:8011/api/v1/get/onlyAasanAccount' \
+--header 'x-channel-id: KONNECT' \
+--header 'x-sub-channel-id: MB' \
+--header 'x-req-id: 001512212221232' \
+--header 'x-country-code: PK' \
+--header 'Content-Type: application/json' \
+--data '    {
+    "cnic": "4220136126111",
+    "SEARCH_TYPE":"ASSAN"
+    }'
